@@ -56,13 +56,33 @@ function cadastrarDespesa() {
     let valor = document.getElementById("valor") 
 
     let despesa = new Despesa(ano.value, mes.value, dia.value, tipo.value, descricao.value, valor.value)
-
+    
 
     if(despesa.validarDados()){
-        $('#sucessoGravacao').modal('show')
+        $('#gravacao').modal('show')
+
+        /* Modal sucesso */
+
+        document.getElementById("controleCorTexto").className = "modal-header text-success";
+        document.getElementById("TituloModal").innerHTML = "Registro inserido com sucesso!";
+        document.getElementById("TextoModal").innerHTML = "Registro inserido com sucesso!";
+        document.getElementById("controleCorBotao").className = "btn btn-success";
+        document.getElementById("controleCorBotao").innerHTML = "Voltar";
+
+        /**/
+
         bd.gravar(despesa)
+        
     } else {
-        $('#erroGravacao').modal('show')
+        $('#gravacao').modal('show')
+
+        /* Modal erro */ 
+
+        document.getElementById("controleCorTexto").className = "modal-header text-danger";
+        document.getElementById("TituloModal").innerHTML = "Erro na gravação";
+        document.getElementById("TextoModal").innerHTML = "Existem campos obrigatórios que não foram preenchidos";
+        document.getElementById("controleCorBotao").className = "btn btn-danger";
+        document.getElementById("controleCorBotao").innerHTML = "Voltar e corrigir";
     }
 
 }
